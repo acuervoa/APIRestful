@@ -53,10 +53,8 @@ class UserController extends APIController {
    *
    * @return \Illuminate\Http\Response
    */
-  public function show($id) {
-    $usuario = User::findOrFail($id);
-
-    return $this->showOne($usuario);
+  public function show(User $user) {
+    return $this->showOne($user);
   }
 
   /**
@@ -67,8 +65,7 @@ class UserController extends APIController {
    *
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id) {
-    $user = User::findOrFail($id);
+  public function update(Request $request, User $user) {
 
     $rules = [
       'email' => 'email|unique:users,email,' . $user->id,
@@ -120,9 +117,7 @@ class UserController extends APIController {
    *
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id) {
-    $user = User::findOrFail($id);
-
+  public function destroy(User $user) {
     $user->delete();
 
     return $this->showOne($user);
