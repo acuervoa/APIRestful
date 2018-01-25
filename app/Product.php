@@ -24,7 +24,7 @@ class Product extends Model {
   protected $hidden = [
     'pivot'
   ];
-  
+
   public function estaDisponible() {
     return $this->status === self::PRODUCTO_DISPONIBLE;
   }
