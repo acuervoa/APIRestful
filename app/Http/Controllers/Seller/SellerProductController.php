@@ -91,7 +91,7 @@ class SellerProductController extends APIController
 
         $product->save();
 
-        return $this->showOne($product)
+        return $this->showOne($product);
 
     }
 
@@ -110,11 +110,9 @@ class SellerProductController extends APIController
       return $this->showOne($product);
     }
 
-
-
     protected function verificarVendedor(Seller $seller, Product $product){
       if($seller->id != $product->seller_id) {
-        throw new HttpException(422, 'El vendedor especificado no es el vendedor real para el produto');
+        throw new HttpException(422, 'El vendedor especificado no es el vendedor real para el producto');
       }
     }
 }

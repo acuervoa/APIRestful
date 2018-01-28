@@ -53,6 +53,7 @@ $factory->define(Product::class, function (Faker\Generator $faker) {
     'name' => $faker->word,
     'description' => $faker->paragraph(1),
     'quantity' => $faker->numberBetween(1, 10),
+    'status' => $faker->randomElement([Product::PRODUCTO_DISPONIBLE, Product::PRODUCT_NO_DISPONIBLE]),
     'image' => $faker->randomElement(['1.jpeg', '2.jpeg', '3.jpeg']),
     //'seller_id' => User::inRandomOrder()->first()->id,
     'seller_id' => User::all()->random()->id,
