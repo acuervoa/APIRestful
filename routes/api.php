@@ -40,4 +40,4 @@ Route::resource('sellers.buyers', 'Seller\SellerBuyerController', ['only' => ['i
 Route::resource('sellers.products', 'Seller\SellerProductController', ['except' => ['create', 'show', 'edit']]);
 
 Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
-Route::name('verify')->get('users/verify/{token}', 'UserController@verify');
+Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');

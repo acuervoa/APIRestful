@@ -14,9 +14,9 @@ class UserController extends APIController {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    $usuarios = User::all();
+    $users = User::all();
 
-    return $this->showAll($usuarios);
+    return $this->showAll($users);
   }
 
   /**
@@ -124,7 +124,7 @@ class UserController extends APIController {
   }
 
   public function verify($token) {
-    $user = User::where('verification_token', $token)->fistOrFail();
+    $user = User::where('verification_token', $token)->firstOrFail();
 
     $user->verified = User::USUARIO_VERIFICADO;
     $user->verification_token = null;
