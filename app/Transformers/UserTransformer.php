@@ -5,27 +5,29 @@ namespace App\Transformers;
 use App\User;
 use League\Fractal\TransformerAbstract;
 
-class UserTransformer extends TransformerAbstract
-{
+class UserTransformer extends TransformerAbstract {
 
-  /**
-   * A Fractal transformer.
-   *
-   * @param \App\User $user
-   *
-   * @return array
-   */
-    public function transform(User $user)
-    {
+    /**
+     * A Fractal transformer.
+     *
+     * @param \App\User $user
+     *
+     * @return array
+     */
+    public function transform(User $user) {
         return [
-            'identifier' => (int)$user->id,
-            'name' => (string)$user->name,
-            'email'=>(string)$user->email,
-            'isVerified' => (int)$user->verified,
+            'identifier' => (int) $user->id,
+            'name' => (string) $user->name,
+            'email' => (string) $user->email,
+            'isVerified' => (int) $user->verified,
             'isAdmin' => ($user->admin === 'true'),
-            'createdDate' => (string)$user->created_at,
-            'updatedDate' => (string)$user->updated_at,
-            'deletedDate' => isset($user->deleted_at) ? (string) $user->deleted_at : null,
+            'createdDate' => (string) $user->created_at,
+            'updatedDate' => (string) $user->updated_at,
+            'deletedDate' => isset($user->deleted_at) ? (string) $user->deleted_at : NULL,
+            'links' => [
+                'rel' => 'self',
+                'href' => route('users.show', $user->id),
+            ],
         ];
     }
 
@@ -33,7 +35,7 @@ class UserTransformer extends TransformerAbstract
         $attributes = [
             'identifier' => 'id',
             'name' => 'name',
-            'email'=> 'email',
+            'email' => 'email',
             'isVerified' => 'verified',
             'isAdmin' => 'admin',
             'createdDate' => 'created_at',
@@ -41,6 +43,6 @@ class UserTransformer extends TransformerAbstract
             'deletedDate' => 'deleted_at',
         ];
 
-        return isset($attributes[$index]) ? $attributes[$index] : null;
+        return isset($attributes[$index]) ? $attributes[$index] : NULL;
     }
 }

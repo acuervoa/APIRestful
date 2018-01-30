@@ -107,8 +107,8 @@ trait ApiResponser {
         $url = request()->url();
         $queryParams = request()->query();
 
-        ksort($queryParams);
-        
+        ksort($queryParams,SORT_STRING);
+
         $queryString = http_build_query($queryParams);
         $fullUrl = "{$url}?{$queryString}";
 

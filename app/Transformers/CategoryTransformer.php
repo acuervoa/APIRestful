@@ -5,23 +5,44 @@ namespace App\Transformers;
 use App\Category;
 use League\Fractal\TransformerAbstract;
 
-class CategoryTransformer extends TransformerAbstract
-{
+class CategoryTransformer extends TransformerAbstract {
+
     /**
      * A Fractal transformer.
      *
      * @return array
      */
-    public function transform(Category $category)
-    {
-      return [
-        'identifier' => (int)$category->id,
-        'title' => (string)$category->name,
-        'details'=>(string)$category->description,
-        'createdDate' => (string)$category->created_at,
-        'updatedDate' => (string)$category->updated_at,
-        'deletedDate' => isset($category->deleted_at) ? (string) $category->deleted_at : null,
-      ];
+    public function transform(Category $category) {
+        return [
+            'identifier' => (int) $category->id,
+            'title' => (string) $category->name,
+            'details' => (string) $category->description,
+            'createdDate' => (string) $category->created_at,
+            'updatedDate' => (string) $category->updated_at,
+            'deletedDate' => isset($category->deleted_at) ? (string) $category->deleted_at : NULL,
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('categories.show', $category->id),
+                ],
+                [
+                    'rel' => 'category.buyers',
+                    'href' => route('categories.buyers.index', $category->id),
+                ],
+                [
+                    'rel' => 'category.products',
+                    'href' => route('categories.products.index', $category->id),
+                ],
+                [
+                    'rel' => 'category.sellers',
+                    'href' => route('categories.sellers.index', $category->id),
+                ],
+                [
+                    'rel' => 'category.transactions',
+                    'href' => route('categories.transactions.index', $category->id),
+                ],
+            ],
+        ];
     }
 
     public static function originalAttribute($index) {
@@ -34,6 +55,6 @@ class CategoryTransformer extends TransformerAbstract
             'deletedDate' => 'deleted_at',
         ];
 
-        return isset($attributes[$index]) ? $attributes[$index] : null;
+        return isset($attributes[$index]) ? $attributes[$index] : NULL;
     }
 }
