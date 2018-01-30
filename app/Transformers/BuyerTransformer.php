@@ -21,7 +21,7 @@ class BuyerTransformer extends TransformerAbstract
         'isVerified' => (int)$buyer->verified,
         'createdDate' => (string)$buyer->created_at,
         'updatedDate' => (string)$buyer->updated_at,
-        'deletedDate' => isset($buyer->updated_at) ? (string) $buyer->deleted_at : null,
+        'deletedDate' => isset($buyer->deleted_at) ? (string) $buyer->deleted_at : null,
       ];
     }
 }

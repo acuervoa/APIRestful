@@ -25,7 +25,7 @@ class UserTransformer extends TransformerAbstract
             'isAdmin' => ($user->admin === 'true'),
             'createdDate' => (string)$user->created_at,
             'updatedDate' => (string)$user->updated_at,
-            'deletedDate' => isset($user->updated_at) ? (string) $user->deleted_at : null,
+            'deletedDate' => isset($user->deleted_at) ? (string) $user->deleted_at : null,
         ];
     }
 }
