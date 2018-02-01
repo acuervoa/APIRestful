@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class CategorySellerController extends APIController
 {
+
+    public function __construct(){
+        parent::__construct();
+    }
+
     /**
      * Display a listing of the resource.
      *
